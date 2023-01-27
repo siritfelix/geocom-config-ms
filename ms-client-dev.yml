@@ -1,0 +1,26 @@
+server:
+    port: ${PORT:8007}
+spring:
+    datasource:
+        driver-class-name: org.mariadb.jdbc.Driver
+        url: ${DATA_BASE_LOYALTY_URL:jdbc:mariadb://localhost:3306/geoloyalty}
+        username: ${DATA_BASE_LOYALTY_USER:root}
+        password: ${DATA_BASE_LOYALTY_PASS:geocom}
+    jpa:
+        show-sql: true
+eureka:
+    client: 
+        service-url: 
+            defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+        register-with-eureka: true
+ms-messager:
+    messager:
+        200: Accept
+        201: Ya existe una cuenta creada con esa tarjeta
+        204: Tarjeta ya existente
+        401: No existe la tarjeta
+        402: No existe cliente asociado a la tarjeta
+        403: Error tarjeta asociada a varios clientes
+        404: Cliente no posee un celular asociado
+        405: No existen clientes para los datos proporcionados
+     
