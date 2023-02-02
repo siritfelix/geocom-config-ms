@@ -24,7 +24,7 @@ keycloack:
 eureka:
     client: 
         service-url: 
-            defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+            defaultZone: ${EUREKA_SERVER:http://ms-register-eureka:8761/eureka}
         register-with-eureka: true
     instance:
         hostname: localhost
