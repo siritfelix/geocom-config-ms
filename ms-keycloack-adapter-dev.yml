@@ -1,24 +1,33 @@
 server:
-    port: ${PORT:8007}
+    port: ${PORT:8008}
+
 spring:
-    datasource:
-        driver-class-name: oracle.jdbc.driver.OracleDriver
-        url: ${DATA_BASE_LOYALTY_URL:jdbc:oracle:thin:@localhost:1521/xe}
-        username: ${DATA_BASE_LOYALTY_USER:APPLOYCLIENTQA2}
-        password: ${DATA_BASE_LOYALTY_PASS:geocom}    
-    jpa:
-        show-sql: true
-        hibernate:
-            ddl-auto: none
+    security:
+        oauth2:
+            client:
+                registration:
+                    keycloack:
+                        authorization-grant-type: client_credentials
+                        client-id:
+                            ${CLIENT_ID:admin-cli}
+                        client-secret:
+                            ${CLIENT_SECRECT:NTfmkc2Az1Uzp7GRN1drH28fkDoYOnQy}
+                provider:
+                    keycloack:
+                        token-uri:
+                            ${URL_ACCESS:http://localhost:8181/auth/realms/Master/protocol/openid-connect/token}
+keycloack:
+    uri_base:
+        ${URL_BASE_CLI:http://localhost:8181/auth/admin/realms/YZA}                        
+    path-users:
+        ${URL_USERS_CLI:/users}                        
 eureka:
     client: 
         service-url: 
             defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
-        register-with-eureka: false
-gu-entities:
-    PhoneType:
-        cell: CELL    
-        catogory: PRIMARY
+        register-with-eureka: true
+    instance:
+        hostname: localhost
 ms-messager:
     messager:
         200: Accept
@@ -39,20 +48,9 @@ ms-messager:
         412: Ya tienes una cuenta creada con ese Email, ve al login para ingresar
         413: No se puede dar de alta Email si no valido la tarjeta
 
-        700: La tarjeta esta asociada a un cliente no habilidato
-        701: El cliente no ha validado el Email
-
         800: Existe el usuario
         801: No existe el usuario
         802: Error existe varios usuarios con el mismo Email
 
         501: Error interno de autenticacion
         502: Ya existe un usuario con ese email
-card:
-    sms:
-        time:
-            expiration: 120    
-        digit: 4
-ms:
-    keycloack-adapter:
-        url: http://localhost:8008
