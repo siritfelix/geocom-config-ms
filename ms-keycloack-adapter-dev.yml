@@ -15,10 +15,10 @@ spring:
                 provider:
                     keycloack:
                         token-uri:
-                            ${URL_ACCESS:http://localhost:8181/auth/realms/Master/protocol/openid-connect/token}
+                            ${URL_ACCESS:http://host.docker.internal:8181/auth/realms/Master/protocol/openid-connect/token}
 keycloack:
     uri_base:
-        ${URL_BASE_CLI:http://localhost:8181/auth/admin/realms/YZA}                        
+        ${URL_BASE_CLI:http://host.docker.internal:8181/auth/admin/realms/YZA}                        
     path-users:
         ${URL_USERS_CLI:/users}                        
 eureka:
